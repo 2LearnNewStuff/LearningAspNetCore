@@ -25,9 +25,11 @@ namespace AspNetCoreVideo
                 .AddJsonFile("appsettings.json");
 
             Configuration = builder.Build();
-            
+
+            services.AddMvc();
             // services.AddSingleton<IMessageService, HardcodedMessageService>();
             services.AddSingleton<IMessageService, ConfigurationMessageService>();
+
 
         }
 
@@ -39,7 +41,8 @@ namespace AspNetCoreVideo
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseStaticFiles();
+            //app.UseStaticFiles();
+            app.UseMvcWithDefaultRoute();
 
             app.Run(async (context) =>
             {
